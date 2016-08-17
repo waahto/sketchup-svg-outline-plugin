@@ -873,7 +873,7 @@ class SvgExport
 					else
 						svg = LaserScript.getSvgText(@textEntities[txt][0]) 
 						scale = @annotationHeight.to_f/LaserScript.getHeight
-						svg = "  <g transform=\"translate("+@textEntities[txt][6].to_s+","+@textEntities[txt][7].to_s+") scale("+scale.to_s+")\" fill=\"none\" stroke=\"#"+@annotationRGB+"\" stroke-width=\""+(@annotationWidth.to_f/scale).to_s+"\" stroke-miterlimit=\"4\" stroke-dasharray=\"none\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n"+svg
+						svg = "  <g transform=\"translate("+@textEntities[txt][6].to_s+","+@textEntities[txt][7].to_s+") scale("+scale.to_s+")\" fill=\"none\" stroke=\"#"+@annotationRGB+"\" stroke-width=\""+(@annotationWidth.to_f/scale).to_s+"\" stroke-miterlimit=\"4\" stroke-dasharray=\"none\" stroke-linejoin=\"miter\" stroke-linecap=\"butt\">\n"+svg
 						svg = svg+"  </g>\n";	
 						@svgFile.write svg
 					end
@@ -890,7 +890,7 @@ class SvgExport
 			# Write each face as a series of grouped lines
 			for g in 0...@pointArrayGFXY.length
 				for f in 0...@pointArrayGFXY[g].length
-					@svgFile.write "  <g id=\"face"+faceNumber.to_s+"\" fill=\"none\" stroke=\"#"+@outlineRGB+"\" stroke-width=\""+@outlineWidth.to_s+"\" stroke-miterlimit=\"4\" stroke-dasharray=\"none\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n"
+					@svgFile.write "  <g id=\"face"+faceNumber.to_s+"\" fill=\"none\" stroke=\"#"+@outlineRGB+"\" stroke-width=\""+@outlineWidth.to_s+"\" stroke-miterlimit=\"4\" stroke-dasharray=\"none\" stroke-linejoin=\"miter\" stroke-linecap=\"butt\">\n"
 					for i in 0...@pointArrayGFXY[g][f].length											
 							
 						# For points in loop
@@ -929,7 +929,7 @@ class SvgExport
 			for g in 0...@pointArrayGFXY.length
 				for f in 0...@pointArrayGFXY[g].length
 					@svgFile.write "  <path id=\"face"+faceNumber.to_s+"-cut\"\n"
-					@svgFile.write " style=\"fill:none;stroke:#"+@outlineRGB+";stroke-width:"+@outlineWidth.to_s+";stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:round;stroke-linecap:round\"\n"
+					@svgFile.write " style=\"fill:none;stroke:#"+@outlineRGB+";stroke-width:"+@outlineWidth.to_s+";stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:miter;stroke-linecap:butt\"\n"
 					@svgFile.write "        d=\""
 					for i in 0...@pointArrayGFXY[g][f].length
 						@svgFile.write "M "+@pointArrayGFXY[g][f][i][0][0].to_s+","+@pointArrayGFXY[g][f][i][0][1].to_s+" "				
@@ -959,7 +959,7 @@ class SvgExport
 				for g in 0...@pointArrayGFXY.length
 					for f in 0...@pointArrayGFXY[g].length
 						@svgFile.write "  <path id=\"face"+faceNumber.to_s+"-interior\"\n"
-						@svgFile.write " style=\"fill:none;stroke:#"+@dissectRGB+";stroke-width:"+@dissectWidth.to_s+";stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:round;stroke-linecap:round\"\n"
+						@svgFile.write " style=\"fill:none;stroke:#"+@dissectRGB+";stroke-width:"+@dissectWidth.to_s+";stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:miter;stroke-linecap:butt\"\n"
 						@svgFile.write "        d=\""
 						for i in 0...@pointArrayGFXY[g][f].length
 							@svgFile.write "M "+@pointArrayGFXY[g][f][i][0][0].to_s+","+@pointArrayGFXY[g][f][i][0][1].to_s+" "				
@@ -990,7 +990,7 @@ class SvgExport
 				for g in 0...@pointArrayGFXY.length
 					for f in 0...@pointArrayGFXY[g].length
 						@svgFile.write "  <path id=\"face"+faceNumber.to_s+"-interior\"\n"
-						@svgFile.write " style=\"fill:none;stroke:#"+@orphanRGB+";stroke-width:"+@orphanWidth.to_s+";stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:round;stroke-linecap:round\"\n"
+						@svgFile.write " style=\"fill:none;stroke:#"+@orphanRGB+";stroke-width:"+@orphanWidth.to_s+";stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:miter;stroke-linecap:butt\"\n"
 						@svgFile.write "        d=\""
 						for i in 0...@pointArrayGFXY[g][f].length
 							@svgFile.write "M "+@pointArrayGFXY[g][f][i][0][0].to_s+","+@pointArrayGFXY[g][f][i][0][1].to_s+" "				
